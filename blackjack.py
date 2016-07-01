@@ -12,12 +12,14 @@ def main():
 
 	dealer_hand = Hand()
 
-	print(deck.deal(player_hand), end=" ")
-	print(deck.deal(player_hand))
+	player_hand.add(deck.deal())
+	player_hand.add(deck.deal())
 
-	print(deck.deal(dealer_hand, True), end=" ")
-	print(deck.deal(dealer_hand))
+	dealer_hand.add(deck.deal(), True)
+	dealer_hand.add(deck.deal())
 
+	print(player_hand)
+	print(dealer_hand)
 
 
 if __name__ == "__main__":
