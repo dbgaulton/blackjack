@@ -1,5 +1,6 @@
 
 import random
+import time
 
 SUIT_UNICODE = {
 	"spades": chr(0x2664),
@@ -19,11 +20,11 @@ class Card:
 
 	def __repr__(self):
 		if self.is_hole:
-			return " **"
-		elif self._value == "10":
-			return self._value + self._suit
+			return "** "
+		#elif self._value == "10"
+		#	return self._value + self._suit
 		else:
-			return " " + self._value + self._suit
+			return self._value + self._suit + " "
 
 
 class Deck():
@@ -46,10 +47,13 @@ class Deck():
 class Hand():
 	def __init__(self):
 		self._cards = []
+		self.hole_cards = []
 
 	def add(self, card, is_hole=False):
 		card.is_hole = is_hole
 		self._cards.append(card)
+		if is_hole:
+			self.hole_cards.append(card)
 
 	def __repr__(self):
 		output = ""
@@ -59,13 +63,22 @@ class Hand():
 
 	def get_blackjack_val(self):
 		tot = 0;
-		for card in self.cards:
+		for card in self._cards:
 			royals = ['J', 'Q', 'K']
-			if card.value in royals:
+			if card._value in royals:
 				tot += 10
-			elif card.value != 'A':
-				tot += int(card.value)
+			elif card._value != 'A':
+				tot += int(card._value)
 			else:
-				pass
-				# handle ace case
+				if tot + 11 > 21:
+					tot += 1
+				else:
+					tot += 11
 		return tot
+
+	def is_under(self):
+		return self.get_blackjack_val() <= 21
+
+	def reveal_hole_cards(self):
+		for card in self.hole_cards:
+			card.is_hole = False
