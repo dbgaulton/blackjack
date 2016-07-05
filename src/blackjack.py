@@ -69,6 +69,7 @@ def main():
 		confirm = ["yes", "y"]
 		if play_again in confirm:
 			play = True
+			print()
 		else:
 			play = False
 
