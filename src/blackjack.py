@@ -3,15 +3,22 @@ import sys
 from cards import *
 
 
-def play_game():
-	pass
+PLAY = True
+
+
+def ask_play_again():
+	play_again = input("Play again? ").lower()
+	confirm = ["yes", "y"]
+	if play_again in confirm:
+		PLAY = True
+		print()
+	else:
+		PLAY = False
 
 
 def main():
-
-	play = True
 	
-	while play:
+	while PLAY:
 
 		deck = Deck()
 
@@ -46,6 +53,7 @@ def main():
 
 		if not player_hand.is_under():
 			print("Bust!")
+			ask_play_again()
 			continue
 
 		else:
@@ -65,16 +73,7 @@ def main():
 			else:
 				print("you suck")
 
-		play_again = input("Play again? ").lower()
-		confirm = ["yes", "y"]
-		if play_again in confirm:
-			play = True
-			print()
-		else:
-			play = False
-
-
-
+		ask_play_again()
 
 
 if __name__ == "__main__":
