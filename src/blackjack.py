@@ -5,15 +5,18 @@ from cards import *
 
 PLAY = True
 
-
 def ask_play_again():
-	play_again = input("Play again? ").lower()
-	confirm = ["yes", "y"]
-	if play_again in confirm:
-		PLAY = True
-		print()
-	else:
-		PLAY = False
+	while 1:
+		play_again = input("Play again? ").lower()
+		if play_again == "yes" or play_again == "y":
+			PLAY = True
+			#print()
+			return 
+		elif play_again == "no" or play_again == "n":
+			PLAY = False
+			return
+		else:
+			print("Enter \"yes\" or \"no\"") 
 
 
 def main():
@@ -37,6 +40,8 @@ def main():
 		print("Player: " + str(player_hand))
 		print("Dealer: " + str(dealer_hand))
 
+		if (player_hand.get_blackjack_val() == 21):
+			print("You got a blackjack!")
 
 		while player_hand.is_under():
 			response = input("Hit or Stand? ").lower()
@@ -66,7 +71,7 @@ def main():
 				print("Dealer: " + str(dealer_hand))
 
 		if not dealer_hand.is_under():
-			print("Dealer busts. You Win!")
+			print("Dealer busts. You win!")
 		else:
 			if player_hand.get_blackjack_val() > dealer_hand.get_blackjack_val():
 				print("You Win!")
