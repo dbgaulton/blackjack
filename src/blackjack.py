@@ -3,26 +3,9 @@ import sys
 from cards import *
 
 
-PLAY = True
-
-def ask_play_again():
-	while 1:
-		play_again = input("Play again? ").lower()
-		if play_again == "yes" or play_again == "y":
-			PLAY = True
-			#print()
-			return 
-		elif play_again == "no" or play_again == "n":
-			PLAY = False
-			return
-		else:
-			print("Enter \"yes\" or \"no\"") 
-
-
 def main():
 	
-	while PLAY:
-
+	while 1:
 		deck = Deck()
 
 		deck.shuffle()
@@ -58,9 +41,6 @@ def main():
 
 		if not player_hand.is_under():
 			print("Bust!")
-			ask_play_again()
-			continue
-
 		else:
 			dealer_hand.reveal_hole_cards()
 			print("Dealer: " + str(dealer_hand))
@@ -70,15 +50,27 @@ def main():
 				time.sleep(1)
 				print("Dealer: " + str(dealer_hand))
 
-		if not dealer_hand.is_under():
-			print("Dealer busts. You win!")
-		else:
-			if player_hand.get_blackjack_val() > dealer_hand.get_blackjack_val():
-				print("You Win!")
+			if not dealer_hand.is_under():
+				print("Dealer busts. You win!")
 			else:
-				print("you suck")
+				player_score = player_hand.get_blackjack_val()
+				dealer_score = dealer_hand.get_blackjack_val()
+				print("Player: " + str(player_score) + " Dealer: " + str(dealer_score))
+				if player_score > dealer_score:
+					print("You Win!")
+				elif player_score == dealer_score:
+					print("Push")
+				else:
+					print("you suck")
 
-		ask_play_again()
+		while 1:
+			play_again = input("Play again? ").lower()
+			if play_again == "yes" or play_again == "y":
+				break
+			elif play_again == "no" or play_again == "n":
+				sys.exit()
+			else:
+				print("Enter \"yes\" or \"no\"")
 
 
 if __name__ == "__main__":

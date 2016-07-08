@@ -33,6 +33,7 @@ class Deck():
 		for suit in SUIT_UNICODE:
 			for value in CARD_VALUES:
 				self._cards.append(Card(value, suit))
+		self.discarded_cards = []
 
 	def shuffle(self):
 		random.shuffle(self._cards)
