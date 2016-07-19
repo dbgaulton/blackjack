@@ -42,9 +42,6 @@ def main():
         print("Player: " + str(player_hand))
         print("Dealer: " + str(dealer_hand))
 
-        if (player_hand.get_blackjack_val() == 21):
-            print("You got a blackjack!")
-
         while player_hand.is_under():
             response = input("Hit or Stand? ").lower()
 
@@ -57,6 +54,7 @@ def main():
                 continue
 
             print("Player: " + str(player_hand))
+            time.sleep(1)
 
         if not player_hand.is_under():
             print("Bust!")
@@ -85,13 +83,13 @@ def main():
                 elif player_score == dealer_score:
                     print("Push")
                 else:
-                    print("you suck")
+                    print("you lose")
                     chips -= bet
 
         time.sleep(1)
 
+        print("You have $" + str(chips))
         while 1:
-            print("You have $" + str(chips))
             play_again = input("Play again? ").lower()
             if play_again == "yes" or play_again == "y":
                 break
