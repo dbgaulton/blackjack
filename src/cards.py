@@ -70,7 +70,7 @@ class Hand():
                 tot += 10
             elif card._value != 'A':
                 tot += int(card._value)
-            else:
+            else: # HANDLE ACE, CAN BE 1 OR 11
                 if tot + 11 > 21:
                     tot += 1
                 else:
@@ -83,3 +83,8 @@ class Hand():
     def reveal_hole_cards(self):
         for card in self.hole_cards:
             card.is_hole = False
+
+    def discard(self, card, deck):
+        self._cards.remove(card)
+        deck.discarded_cards.append(card)
+
