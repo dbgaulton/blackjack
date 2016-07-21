@@ -3,7 +3,7 @@ import sys
 from cards import *
 
 
-def main():
+def start_game():
 
     chips = 500
     print("$" + str(chips) + " buy-in")
@@ -97,6 +97,11 @@ def main():
                 sys.exit()
             else:
                 print("Enter 'y' or 'n'")
+
+
+
+def main():
+    start_game()
 
 
 if __name__ == "__main__":
