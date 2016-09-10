@@ -11,6 +11,13 @@ SUIT_UNICODE = {
 
 CARD_VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
+ALL_HANDS = []
+
+
+def fold_all(deck):
+    for hand in ALL_HANDS:
+        hand.fold(deck)
+
 
 class Card:
     def __init__(self, value, suit):
@@ -87,4 +94,8 @@ class Hand():
     def discard(self, card, deck):
         self._cards.remove(card)
         deck.discarded_cards.append(card)
+
+    def fold(self, deck):
+        for card in self._cards:
+            discard(card, deck)
 
