@@ -5,12 +5,10 @@ from cards import *
 
 
 def start_game():
-
     chips = 500
     print("$" + str(chips) + " buy-in")
 
     while 1:
-
         if chips == 0:
             print("You have mortgaged you're house and now have $500")
             chips = 500
