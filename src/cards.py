@@ -162,10 +162,9 @@ class BlackjackGame:
 
     def _deal_cards(self):
         self.player.hand.add(self.deck.deal_card())
-        self.player.hand.add(self.deck.deal_card())
-
-        self.dealer_hand.add(self.deck.deal_card(), True)
         self.dealer_hand.add(self.deck.deal_card())
+        self.player.hand.add(self.deck.deal_card())
+        self.dealer_hand.add(self.deck.deal_card(), True)
 
         print("Player: " + str(self.player.hand))
         print("Dealer: " + str(self.dealer_hand))
