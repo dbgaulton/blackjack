@@ -156,7 +156,7 @@ class BlackjackGame:
             print("Push")
         else:
             print("you lose")
-            self.player.chips += self.player.bet
+            self.player.chips -= self.player.bet
 
         return self.end_game()
 
